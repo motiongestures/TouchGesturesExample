@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Touch Gestures Example</string>
+    <string name="no_internet_dialog_title">Error</string>
+    <string name="no_internet_dialog_message">The application requires internet permissions to function</string>
+</resources>
