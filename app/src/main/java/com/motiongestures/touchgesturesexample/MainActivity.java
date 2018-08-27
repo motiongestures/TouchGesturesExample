@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements TestGestureDrawin
     private void connect() {
         try {
             //change URI to match your project
-            //"wss://sdk.motiongestures.com/recognition?api_key=<replace key>"
-            webSocket = new WebSocketFactory().createSocket("ws://sergiu-pc:8080/recognition?api_key=mSgI7eSz5o5MY21GepNFvhs25wAlGsXdQmw3IlTU2Cbj0ZoW90");
+
+            webSocket = new WebSocketFactory().createSocket("wss://sdk.motiongestures.com/recognition?api_key=<replace key>");
             webSocket.addListener(socketAdapter);
             currentSessionId = UUID.randomUUID().toString();
             webSocket.connectAsynchronously();
