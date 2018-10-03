@@ -68,7 +68,11 @@ public class MainActivity extends AppCompatActivity implements TestGestureDrawin
         for(TouchGesturePoint point : event.getPoints()) {
             lastReceivedPoints.add(Greapi.Point.newBuilder().setX(point.getX()).setY(point.getY()).build());
         }
-        connect();
+        try {
+            sendLatestSamples();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void disconnect() {
@@ -89,6 +93,12 @@ public class MainActivity extends AppCompatActivity implements TestGestureDrawin
         } catch (IOException e) {
             Log.e(TAG, "Cannot create socket connection", e);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        connect();
     }
 
     @Override
@@ -169,12 +179,11 @@ public class MainActivity extends AppCompatActivity implements TestGestureDrawin
             }catch(IOException ex) {
                 Log.e(TAG,"Error deserializing the recognition response",ex);
             }
-            disconnect();
+
         }
         @Override
         public void onConnected(WebSocket websocket, Map<String, List<String>> headers) throws Exception {
             Log.d(TAG,"Connected to server");
-            sendLatestSamples();
         }
 
         @Override
