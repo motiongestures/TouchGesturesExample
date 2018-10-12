@@ -78,6 +78,7 @@ enum Status {
  GestureEnd = 2;  // the recognition engine detected the end of a gesture
  GestureTooShort = 3;
  GestureTooLong = 4;
+ GestureRejected = 5;//the recognition engine rejected the recognized gesture
 }
 
 message Angle {

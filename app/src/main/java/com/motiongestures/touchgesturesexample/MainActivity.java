@@ -168,8 +168,18 @@ public class MainActivity extends AppCompatActivity implements TestGestureDrawin
                         @Override
                         public void run() {
                             int size = Math.min(recognitionResponse.getNamesCount(),recognitionResponse.getLabelsCount());
-                            for(int i =0;i<size;i++) {
+                            for(int i = 0;i<size;i++) {
                                 gesturesListAdapter.add("Recognized gesture " + recognitionResponse.getNames(i) + " with label " + recognitionResponse.getLabels(i));
+                            }
+                        }
+                    });
+                } else if(recognitionResponse.getStatus() == Greapi.Status.GestureRejected) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            int size = Math.min(recognitionResponse.getNamesCount(),recognitionResponse.getLabelsCount());
+                            for(int i = 0;i<size;i++) {
+                                gesturesListAdapter.add("Rejected gesture " + recognitionResponse.getNames(i) + " with label " + recognitionResponse.getLabels(i));
                             }
                         }
                     });
